@@ -1,7 +1,6 @@
 import sys
 import os
 
-import describe_images
 import twitterimage
 import generatevedio as generatevedio
 import describe_images1

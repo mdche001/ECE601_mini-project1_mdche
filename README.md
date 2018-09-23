@@ -1,8 +1,8 @@
 # mini-project1_mdche  
 1st mini project of Mingdao Che  
-9/15 2018 First tiny step!  
+lastest updated in 9/23/2018  
 
-1.Use main.py to test the whole project:  
-    eg. python main.py hulu  
-2. Documents and reference will be completed before midnight of 9/22/2018  
-3. There remain some parts need to improve, which will also be finished before the same time.  
+1. Use main.py to test the whole project:  
+      eg. python main.py hulu  
+2. Three functons: twitterimage.get_images(keys is hinded), describe_images1.get_describe, generatevedio.create  
+3. If you need keys, please contact me.  

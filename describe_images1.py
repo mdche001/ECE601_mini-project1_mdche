@@ -13,7 +13,7 @@ def get_describe(screen_name, username, img_num):
     mydb = mysql.connector.connect(host="localhost", user="root", passwd="123456", auth_plugin='mysql_native_password')
     mycursor = mydb.cursor()
     mycursor.execute("use mini_project3_db")
-    sql = "INSERT INTO user_data (username,img_num,description,description_num,file_name,Modified_time) VALUES (%s,%s,%s,%s,%s,%s)"
+    sql = "INSERT INTO user_options (username,img_num,description,description_num,file_name,Modified_time) VALUES (%s,%s,%s,%s,%s,%s)"
 
     client = vision.ImageAnnotatorClient()
     # list = os.listdir('C:/User/synox/mini_project1/'+screen_name+'/
@@ -57,15 +57,6 @@ def get_describe(screen_name, username, img_num):
             print('no more jpg existed')
             break
 
-    # # insert to mysql db
-    # mydb = mysql.connector.connect(host="localhost", user="root", passwd="123456", auth_plugin='mysql_native_password')
-    # mycursor = mydb.cursor()
-    # mycursor.execute("use mini_project3_db")
-    # sql = "INSERT INTO user_data (username, img_num,description,description_num) VALUES (%s, %s,%s,%s)"
-    # desc = desc[:-1]
-    # val = (username, img_num, desc, c)
-    # mycursor.execute(sql, val)
-    # mydb.commit()
 
     # insert mongodb
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")

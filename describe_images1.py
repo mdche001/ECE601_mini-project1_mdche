@@ -7,13 +7,18 @@ import pymongo
 import mysql.connector
 import datetime
 
-def get_describe(screen_name, username, img_num):
+def get_describe(screen_name, username, img_num,databasenum):
 
-    # connect database
-    mydb = mysql.connector.connect(host="localhost", user="root", passwd="123456", auth_plugin='mysql_native_password')
-    mycursor = mydb.cursor()
-    mycursor.execute("use mini_project3_db")
-    sql = "INSERT INTO user_options (username,img_num,description,description_num,file_name,Modified_time) VALUES (%s,%s,%s,%s,%s,%s)"
+    if (databasenum == 1):
+        # connect  Mysql database
+        mydb = mysql.connector.connect(host="localhost", user="root", passwd="123456", auth_plugin='mysql_native_password')
+        mycursor = mydb.cursor()
+        mycursor.execute("use mini_project3_db")
+        sql = "INSERT INTO user_options (username,img_num,description,description_num,file_name,Modified_time) VALUES (%s,%s,%s,%s,%s,%s)"
+    elif (databasenum == 2):
+        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        mydb = myclient["mini_project3_mongo"]
+        mycol = mydb["users"]
 
     client = vision.ImageAnnotatorClient()
     # list = os.listdir('C:/User/synox/mini_project1/'+screen_name+'/
@@ -47,20 +52,21 @@ def get_describe(screen_name, username, img_num):
                 j=j+1
                 raw_image.save(file_name)
             i = i+1
-            mtime = datetime.datetime.now()
-            desc = desc[:-1]
-            val = (username, img_num, desc, c, file_name,mtime)
-            mycursor.execute(sql, val)
-            mydb.commit()
 
+            #insert mysql
+            if (databasenum == 1):
+                mtime = datetime.datetime.now()
+                desc = desc[:-1]
+                val = (username, img_num, desc, c, file_name,mtime)
+                mycursor.execute(sql, val)
+                mydb.commit()
+
+            #insert mongodb
+            elif (databasenum == 2):
+                mtime = datetime.datetime.now()
+                desc = desc[:-1]
+                mydict = {"username": username, "img_num": img_num, "description": desc, "description_num": c, "file_name": file_name,"Modified_time": mtime}
+                mycol.insert(mydict)
         else:
             print('no more jpg existed')
             break
-
-
-    # insert mongodb
-    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-    mydb = myclient["mydatabase"]
-    mycol = mydb["users"]
-    mydict = {"username": username, "img_num": img_num, "description": desc, "description_num": c}
-    x = mycol.insert_one(mydict)

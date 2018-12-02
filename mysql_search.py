@@ -2,11 +2,12 @@ import twitterimage
 import generatevedio
 import describe_images1
 
-def add_user(mycursor):
+
+def add_user(mycursor,databasenum):
     screen_name = input("Enter a user name: ")
     mycursor.execute("SELECT * FROM user_options WHERE username='" + screen_name + "'")
     myresult = mycursor.fetchall()
-    if (len(myresult) != 0):
+    if ((len(myresult) != 0) and (databasenum ==1)):
         print("User name already exsist")
         return
     print(screen_name)
@@ -15,25 +16,28 @@ def add_user(mycursor):
     print("-------------------------------------")
     img_num = twitterimage.get_images(screen_name)
     print("-------------------------------------")
-    print("analyzing video")
+    print("detect labels")
     print("-------------------------------------")
-    describe_images1.get_describe(screen_name, screen_name, img_num)
+    describe_images1.get_describe(screen_name, screen_name, img_num,databasenum)
     print("-------------------------------------")
     print("creating video from ", str(img_num), " images")
     print("-------------------------------------")
-    generatevedio.create(screen_name,screen_name,img_num)
-
+    generatevedio.create(screen_name, screen_name, img_num)
     return
 
+
 def query_user(mycursor):
-    screen_name = input("Enter a user name to query: ")
+
+    screen_name = input("Enter a user name: ")
     mycursor.execute("SELECT * FROM user_options WHERE username='" + screen_name + "'")
     myresult = mycursor.fetchall()
     if (len(myresult) == 0):
         print("No such user name")
+
     else:
         for user in myresult:
             print(user)
+
 
 def delete_db(mycursor):
     mycursor.execute("truncate user_options;")
@@ -41,6 +45,7 @@ def delete_db(mycursor):
 
 
 def search_word(mycursor):
+   
     word = input("Enter a word to search: ")
     mycursor.execute(("SELECT * FROM user_options"))
     myresult = mycursor.fetchall()

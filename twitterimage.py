@@ -3,10 +3,10 @@ import os
 import wget
 
 #Authentication for using twitter API
-consumer_key = 'lklWiDCCsr4XrKfj8lHEv5vo3'
-consumer_secret = '7a50uiKUoJqjwjKdWOT6kbf9otrYTnsrCxJo56tB4bf1htZJyQ'
-access_token = '1038239626966822917-DOF0WSniAo3COib0JFFDqhHC3sNFhU'
-access_token_secret = 'GVsO61PvAanANCZFhTk4tgRdJaXGZv2UYglA0hbG5BdQG'
+consumer_key = ''
+consumer_secret = ''
+access_token = ''
+access_token_secret = ''
 
 
 def get_images(screen_name):

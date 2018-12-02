@@ -16,9 +16,9 @@ mini-project3_mdche
 
 >> ### Run:
 
-1. Use main.py to test the whole project:  
-      eg. python main.py
-![](https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif)  
-
+1. Use main.py to test the whole project:</br>  
+      eg. python main.py</br> 
+![image](https://github.com/mdche001/ECE601_mini-project1_mdche/raw/miniproject3/docu images/main.JPG)  
+![image](http://github.com/mdche001/ECE601_mini-project1_mdche/raw/miniproject3/docu images/main.jpg)
 2. Three functons: twitterimage.get_images(keys is hinded), describe_images1.get_describe, generatevedio.create  
 3. If you need keys, please contact me.  

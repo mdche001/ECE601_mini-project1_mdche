@@ -1,6 +1,5 @@
 import sys
 import os
-
 import twitterimage
 import generatevedio
 import describe_images1
@@ -20,14 +19,10 @@ def main():
         mycursor.execute("CREATE TABLE  IF NOT EXISTS user_options (id INT AUTO_INCREMENT PRIMARY KEY,username VARCHAR(255), img_num VARCHAR(255),description VARCHAR(255),description_num VARCHAR(255),file_name VARCHAR(255),Modified_time VARCHAR(255))")
         mycursor.execute("use mini_project3_db")
         print( "Database Options:\n ")
-        print("----------------------------------------------------")
         print("1.Create new user name\n")
-        print("----------------------------------------------------")
-        print("2.Query exsist user name\n")
-        print("----------------------------------------------------")
+        print("2.Search exsist user name\n")
         print("3.Delete user\n")
-        print("----------------------------------------------------")
-        print("4.Search\n")
+        print("4.Search words\n")
         print("Or press any other 5 to Exit")
 
         databasenum = input("Select your database style:\n 1.Mysql\n 2. Mongodb\n")
@@ -42,9 +37,9 @@ def main():
                 mysql_search.add_user(mycursor,databasenum)
         elif (options == 2):
             if (databasenum == 1):
-                mysql_search.query_user(mycursor)
+                mysql_search.search_user(mycursor)
             elif (databasenum == 2):
-                mongodb_search.query_user()
+                mongodb_search.search_user()
         elif (options == 3):
             if (databasenum == 1):
                 mysql_search.delete_db(mycursor)

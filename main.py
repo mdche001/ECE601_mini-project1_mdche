@@ -23,7 +23,8 @@ def main():
         print("2.Search exsist user name\n")
         print("3.Delete user\n")
         print("4.Search words\n")
-        print("Or press any other 5 to Exit")
+        print("5.Search popular words\n")
+        print("Or press 6 to Exit")
 
         databasenum = input("Select your database style:\n 1.Mysql\n 2. Mongodb\n")
         databasenum = int(databasenum)
@@ -50,7 +51,12 @@ def main():
                 mysql_search.search_word(mycursor)
             elif (databasenum == 2):
                 mongodb_search.search_word()
-        elif (options == 5):
+        elif (options == 2):
+            if (databasenum == 1):
+                mysql_search.popular(mycursor)
+            elif (databasenum == 2):
+                mongodb_search.popular()
+        elif (options == 6):
             return
 
 main()
